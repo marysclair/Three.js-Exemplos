@@ -27,6 +27,14 @@ scene.add(gridHelper);
 const axesHelper = new THREE.AxesHelper(4);
 scene.add(axesHelper);
 
+const material = new THREE.MeshBasicMaterial({
+  color: 0x8ace00,
+});
+
+const geometry = new THREE.SphereGeometry(1, 64, 64);
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+
 function animate() {
   renderer.render(scene, camera);
 }
