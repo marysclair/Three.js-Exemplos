@@ -27,8 +27,12 @@ scene.add(gridHelper);
 const axesHelper = new THREE.AxesHelper(4);
 scene.add(axesHelper);
 
+const texture = new THREE.TextureLoader().load(
+  "/Poliigon_GrassPatchyGround_4585_BaseColor.jpg"
+);
+
 const material = new THREE.MeshBasicMaterial({
-  color: 0x8ace00,
+  map: texture,
 });
 
 const geometry = new THREE.SphereGeometry(1, 64, 64);
