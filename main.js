@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+import { gsap } from "gsap/gsap-core";
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -64,10 +66,19 @@ const highlight = new THREE.PointLight(0xadff2f, 0.8, 50);
 highlight.position.set(5, 5, 5);
 scene.add(highlight);
 
-function animate() {
-  sphere.rotation.x += 0.01;
-  sphere.rotation.y += 0.01;
+gsap.fromTo(
+  sphere.position,
+  { x: -2 },
+  { x: 2, duration: 2, repeat: -1, yoyo: true, ease: "elastic.inOut(1,0.3)" }
+);
 
+gsap.to(sphere.rotation, {
+  y: Math.PI * 2,
+  duration: 3,
+  repeat: -1,
+});
+
+function animate() {
   renderer.render(scene, camera);
 }
 
