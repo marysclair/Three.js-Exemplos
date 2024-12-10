@@ -30,14 +30,39 @@ scene.add(axesHelper);
 const texture = new THREE.TextureLoader().load(
   "/Poliigon_GrassPatchyGround_4585_BaseColor.jpg"
 );
+const metalnessMap = new THREE.TextureLoader().load(
+  "/Poliigon_GrassPatchyGround_4585_Metallic.jpg"
+);
+const roughnessMap = new THREE.TextureLoader().load(
+  "/Poliigon_GrassPatchyGround_4585_Roughness.jpg"
+);
+const normalMap = new THREE.TextureLoader().load(
+  "/Poliigon_GrassPatchyGround_4585_Normal.png"
+);
 
-const material = new THREE.MeshBasicMaterial({
+const material = new THREE.MeshStandardMaterial({
   map: texture,
+  metalness: 0.5,
+  roughness: 0.5,
+  metalnessMap: metalnessMap,
+  roughnessMap: roughnessMap,
+  normalMap: normalMap,
 });
 
 const geometry = new THREE.SphereGeometry(1, 64, 64);
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
+
+const sunlight = new THREE.DirectionalLight(0xffd700, 1);
+sunlight.position.set(10, 10, 10);
+scene.add(sunlight);
+
+const ambientLight = new THREE.AmbientLight(0x87ceeb, 0.5);
+scene.add(ambientLight);
+
+const highlight = new THREE.PointLight(0xadff2f, 0.8, 50);
+highlight.position.set(5, 5, 5);
+scene.add(highlight);
 
 function animate() {
   renderer.render(scene, camera);
