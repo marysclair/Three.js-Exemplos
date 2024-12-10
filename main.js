@@ -65,6 +65,9 @@ highlight.position.set(5, 5, 5);
 scene.add(highlight);
 
 function animate() {
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
+
   renderer.render(scene, camera);
 }
 
